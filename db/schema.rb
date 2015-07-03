@@ -11,6 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150703000825) do
+
+  create_table "commercial_entities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name",         limit: 100, null: false
+    t.string   "email",        limit: 100, null: false
+    t.string   "phone_number", limit: 14
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "commercial_entities", ["user_id"], name: "index_commercial_entities_on_user_id", using: :btree
+
+  create_table "review_ratings", id: false, force: true do |t|
+    t.integer  "review_id"
+    t.integer  "user_id"
+    t.integer  "rating",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "review_ratings", ["review_id"], name: "index_review_ratings_on_review_id", using: :btree
+  add_index "review_ratings", ["user_id"], name: "index_review_ratings_on_user_id", using: :btree
+
+  create_table "reviews", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "commercial_entity_id"
+    t.integer  "rating",               null: false
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["commercial_entity_id"], name: "index_reviews_on_commercial_entity_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "username",     limit: 20, null: false
+    t.string   "password",     limit: 20, null: false
+    t.string   "first_name",   limit: 20, null: false
+    t.string   "last_name",    limit: 20, null: false
+    t.string   "email",                   null: false
+    t.string   "phone_number", limit: 14
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
