@@ -2,7 +2,7 @@ class CreateReviews < ActiveRecord::Migration
   def up
     create_table :reviews do |t|
     	t.integer "user_id"
-    	t.integer "commercial_entity_id"
+    	t.integer "buisness_id"
     	#Foreign Keys
 
     	
