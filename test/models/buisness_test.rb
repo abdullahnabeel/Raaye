@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommercialEntityTest < ActiveSupport::TestCase
+class BuisnessTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,7 +1,8 @@
-class CreateCommercialEntities < ActiveRecord::Migration
+class CreateBuisnesses < ActiveRecord::Migration
   def up
-    create_table :commercial_entities do |t|
+    create_table :buisnesses do |t|
     	t.integer "user_id"
+      t.integer "catagory_id"
     	#Foreign Key
 
     	t.string "name", :limit => 100, :null => false
@@ -10,10 +11,10 @@ class CreateCommercialEntities < ActiveRecord::Migration
 		t.timestamps
     end
 
-   	add_index("commercial_entities", "user_id")
+   	add_index("buisnesses", "user_id")
   end
 
   def down
-    	drop_table :commercial_entities
+    	drop_table :buisnesses
   end
 end

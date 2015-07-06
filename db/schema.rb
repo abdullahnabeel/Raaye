@@ -13,8 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150703000825) do
 
-  create_table "commercial_entities", force: true do |t|
+  create_table "buisnesses", force: true do |t|
     t.integer  "user_id"
+    t.integer  "catagory_id"
     t.string   "name",         limit: 100, null: false
     t.string   "email",        limit: 100, null: false
     t.string   "phone_number", limit: 14
@@ -22,7 +23,14 @@ ActiveRecord::Schema.define(version: 20150703000825) do
     t.datetime "updated_at"
   end
 
-  add_index "commercial_entities", ["user_id"], name: "index_commercial_entities_on_user_id", using: :btree
+  add_index "buisnesses", ["user_id"], name: "index_buisnesses_on_user_id", using: :btree
+
+  create_table "catagories", force: true do |t|
+    t.string   "name",        limit: 20, null: false
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "review_ratings", id: false, force: true do |t|
     t.integer  "review_id"
